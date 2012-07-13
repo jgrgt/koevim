@@ -8,8 +8,17 @@ import vim
 
 import os
 import sys
-vimpath = os.path.expanduser(os.path.join("~", ".vim", "python"))
+
+koevimdir = vim.eval("expand('<sfile>:p:h')")
+root = os.path.abspath(os.path.join(koevimdir, '..', '..'))
+vimpath = os.path.join(root, "python")
+
+
 sys.path.append(vimpath)
+
+with open("/tmp/koevim.txt", 'w') as f:
+    f.write(str(sys.path) + "\n")
+
 
 from koevim import GenerateDocString
 
