@@ -182,8 +182,8 @@ def GenerateDocString(buf, selected, sel_start, sel_stop):
     # Search for a docstring
     marker = None
     for m in ('"""', "'''"):
-        if '"""' in buf[sel_stop]:
-            marker = '"""'
+        if m in buf[sel_stop]:
+            marker = m
     docstring_begin = docstring_end = sel_stop
 
     if marker:
@@ -202,7 +202,7 @@ def GenerateDocString(buf, selected, sel_start, sel_stop):
                     break
     else:
         marker = '"""'
-        defaultDoc = ['"""', 'Short description here', '"""']
+        defaultDoc = [marker, 'Short description here', marker]
         indentation = "%s    " % fundef.indentation
         doc = IndentedLines(defaultDoc, indentation=indentation)
     # Add pass
